@@ -37,7 +37,12 @@ app.post('/faves', function(req, res) {
 })
 
 app.get('/faves', function(req, res){
-  res.send("MY FAVES")
+  // res.send("MY FAVES")
+  db.fave.findAll()
+  .then(function(foundFaves){
+    // res.send(foundFaves)
+    res.render('faves', { faves: foundFaves })
+  })
 })
 
 // Brings in our results controller
