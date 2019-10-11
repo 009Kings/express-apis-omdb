@@ -20,6 +20,10 @@ app.get('/', function(req, res) {
   res.render('index');
 });
 
+app.post('/faves', function(req, res) {
+  res.send(req.body)
+})
+
 // Brings in our results controller
 app.use('/search', require('./routes/search'));
 
