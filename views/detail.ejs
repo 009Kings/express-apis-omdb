@@ -1,2 +1,8 @@
-<% // Render individual movie details here %>
-<% // This is how to do comments in EJS, by the way... %>
+<h1><%= movie.Title %></h1>
+<h3>(<%= movie.Year %>)</h3>
+<img src="<%= movie.Poster %>" alt="A poster for the movie <%= movie.Title %>">
+<hr />
+<p>IMDB rating: <%= movie.imdbRating %></p>
+<p><strong>Summary:</strong> <%= movie.Plot %></p>
+
+<%= // TODO: create a form to add movie to faves %>

@@ -17,8 +17,11 @@ app.use(require('morgan')('dev'));
 
 // Routes
 app.get('/', function(req, res) {
-  res.send('Hello, backend!');
+  res.render('index');
 });
+
+// Brings in our results controller
+app.use('/search', require('./routes/search'));
 
 // The app.listen function returns a server handle
 var server = app.listen(process.env.PORT || 3000);
