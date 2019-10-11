@@ -2,6 +2,7 @@ require('dotenv').config();
 const express = require('express');
 const ejsLayouts = require('express-ejs-layouts');
 const app = express();
+const db = require('./models')
 
 // Sets EJS as the view engine
 app.set('view engine', 'ejs');
@@ -21,7 +22,22 @@ app.get('/', function(req, res) {
 });
 
 app.post('/faves', function(req, res) {
-  res.send(req.body)
+  // res.send(req.body)
+  db.fave.findOrCreate({
+    where: {
+      imdbid: req.body.imdbid
+    },
+    defaults: {
+      title: req.body.title
+    }
+  }).then(function([fave, created]){
+    console.log(`${fave.title} is ${created ? 'now in my faves' : 'already a fave'}`)
+    res.redirect('/faves')
+  })
+})
+
+app.get('/faves', function(req, res){
+  res.send("MY FAVES")
 })
 
 // Brings in our results controller
